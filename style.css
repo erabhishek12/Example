@@ -1,0 +1,876 @@
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Neumorphic Colors */
+    --primary-bg: #e0e5ec;
+    --secondary-bg: #ffffff;
+    --dark-shadow: #a3b1c6;
+    --light-shadow: #ffffff;
+    
+    /* Accent Colors */
+    --primary-color: #6c5ce7;
+    --secondary-color: #00b894;
+    --accent-color: #fd79a8;
+    --success-color: #00b894;
+    --error-color: #d63031;
+    --warning-color: #fdcb6e;
+    
+    /* Text Colors */
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+    --text-light: #b2bec3;
+    
+    /* Gradients */
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    
+    /* Shadows */
+    --shadow-neumorphic: 9px 9px 16px var(--dark-shadow), 
+                         -9px -9px 16px var(--light-shadow);
+    --shadow-neumorphic-inset: inset 6px 6px 12px var(--dark-shadow), 
+                               inset -6px -6px 12px var(--light-shadow);
+    --shadow-neumorphic-hover: 6px 6px 12px var(--dark-shadow), 
+                               -6px -6px 12px var(--light-shadow);
+    --shadow-floating: 0 10px 40px rgba(108, 92, 231, 0.3);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    color: var(--text-primary);
+}
+
+/* ==========================================
+   ANIMATED BACKGROUND SHAPES
+   ========================================== */
+.bg-shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 20s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--gradient-1);
+    top: 10%;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--gradient-3);
+    bottom: -150px;
+    right: -100px;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    background: var(--gradient-2);
+    top: 50%;
+    right: 10%;
+    animation-delay: 10s;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0.08;
+    animation: floatIcon 15s infinite ease-in-out;
+}
+
+.icon-1 {
+    top: 15%;
+    right: 20%;
+    animation-delay: 0s;
+}
+
+.icon-2 {
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 5s;
+}
+
+.icon-3 {
+    top: 60%;
+    right: 10%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -50px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 30px) rotate(240deg);
+    }
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+.container {
+    position: relative;
+    z-index: 10;
+    width: 95%;
+    max-width: 550px;
+    padding: 40px 20px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   LOGO SECTION
+   ========================================== */
+.logo-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--primary-bg);
+    box-shadow: var(--shadow-neumorphic);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background: var(--gradient-1);
+    color: white;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: var(--shadow-neumorphic);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-floating);
+    }
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==========================================
+   AUTH BOX - NEUMORPHIC CONTAINER
+   ========================================== */
+.auth-box {
+    background: var(--primary-bg);
+    border-radius: 30px;
+    padding: 40px 35px;
+    box-shadow: var(--shadow-neumorphic);
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   TAB SWITCH
+   ========================================== */
+.tab-switch {
+    display: flex;
+    position: relative;
+    background: var(--primary-bg);
+    border-radius: 50px;
+    padding: 6px;
+    box-shadow: var(--shadow-neumorphic-inset);
+    margin-bottom: 35px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tab-btn.active {
+    color: white;
+}
+
+.tab-indicator {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: calc(50% - 6px);
+    height: calc(100% - 12px);
+    background: var(--gradient-1);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    z-index: 1;
+}
+
+/* ==========================================
+   FORMS
+   ========================================== */
+.auth-form {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.input-group.half {
+    flex: 1;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 16px 20px 16px 50px;
+    border: none;
+    border-radius: 15px;
+    background: var(--primary-bg);
+    box-shadow: var(--shadow-neumorphic-inset);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), 
+                inset -4px -4px 8px var(--light-shadow);
+}
+
+.input-wrapper input:focus ~ label,
+.input-wrapper input:not(:placeholder-shown) ~ label,
+.input-wrapper select:focus ~ label,
+.input-wrapper select:valid ~ label {
+    top: -10px;
+    left: 15px;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    background: var(--primary-bg);
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+.input-wrapper label {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus ~ .input-icon,
+.input-wrapper select:focus ~ .input-icon {
+    color: var(--primary-color);
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+}
+
+.input-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transform: translateX(-50%);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+}
+
+.input-wrapper input:focus ~ .input-border,
+.input-wrapper select:focus ~ .input-border {
+    width: 100%;
+}
+
+/* Select Dropdown Styling */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23636e72' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+}
+
+/* ==========================================
+   FORM OPTIONS (CHECKBOX, LINKS)
+   ========================================== */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: var(--primary-bg);
+    box-shadow: var(--shadow-neumorphic-inset);
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background: var(--gradient-1);
+    box-shadow: 0 3px 10px rgba(108, 92, 231, 0.3);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.7rem;
+}
+
+.forgot-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* ==========================================
+   SUBMIT BUTTON - NEUMORPHIC
+   ========================================== */
+.submit-btn {
+    width: 100%;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 15px;
+    background: var(--primary-bg);
+    box-shadow: var(--shadow-neumorphic);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-1);
+    transition: all 0.5s ease;
+    z-index: 0;
+}
+
+.submit-btn:hover::before {
+    left: 0;
+}
+
+.submit-btn:hover {
+    color: white;
+    box-shadow: var(--shadow-floating);
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-neumorphic-inset);
+}
+
+.btn-text,
+.btn-icon {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Button Loading State */
+.btn-loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading .btn-text,
+.submit-btn.loading .btn-icon {
+    display: none;
+}
+
+.submit-btn.loading .btn-loader {
+    display: block;
+}
+
+.submit-btn.loading {
+    background: var(--gradient-1);
+    color: white;
+    pointer-events: none;
+}
+
+/* ==========================================
+   ERROR MESSAGE
+   ========================================== */
+.error-message {
+    margin-top: 15px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: rgba(214, 48, 49, 0.1);
+    border-left: 4px solid var(--error-color);
+    color: var(--error-color);
+    font-size: 0.9rem;
+    display: none;
+    animation: shake 0.5s ease;
+}
+
+.error-message.show {
+    display: block;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* ==========================================
+   FOOTER NOTE
+   ========================================== */
+.footer-note {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-note strong {
+    color: var(--primary-color);
+}
+
+.footer-note i {
+    color: var(--success-color);
+    margin-left: 5px;
+}
+
+/* ==========================================
+   SUCCESS MODAL
+   ========================================== */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.success-modal.show {
+    display: flex;
+}
+
+.success-content {
+    background: var(--primary-bg);
+    padding: 50px 60px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-neumorphic);
+    text-align: center;
+    animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--success-color);
+    margin-bottom: 20px;
+    animation: checkBounce 0.6s ease;
+}
+
+@keyframes checkBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.success-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.success-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--primary-bg);
+    box-shadow: var(--shadow-neumorphic-inset);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 10px;
+    animation: loading 1.5s infinite ease-in-out;
+}
+
+@keyframes loading {
+    0% {
+        left: -40%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ==========================================
+   MECHANICAL ANIMATION OVERLAY
+   ========================================== */
+.animation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(224, 229, 236, 0.95);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.animation-overlay.show {
+    display: flex;
+}
+
+#machineCanvas {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .auth-box {
+        padding: 30px 25px;
+    }
+
+    .brand-name {
+        font-size: 2rem;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+    }
+
+    .success-content {
+        padding: 40px 30px;
+    }
+
+    .success-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .success-icon {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-wrapper input,
+    .input-wrapper select {
+        padding: 14px 15px 14px 45px;
+        font-size: 0.9rem;
+    }
+
+    .input-icon {
+        left: 15px;
+        font-size: 1rem;
+    }
+
+    .submit-btn {
+        padding: 14px 25px;
+        font-size: 1rem;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .auth-box {
+        border-radius: 20px;
+    }
+}
+
+/* ==========================================
+   SCROLLBAR STYLING
+   ========================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-2);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+*:focus {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 4px;
+}
+
+input:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+/* ==========================================
+   SMOOTH TRANSITIONS
+   ========================================== */
+* {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease;
+}
